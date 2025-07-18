@@ -1,39 +1,49 @@
-import React from 'react'
+"use client";
+import React, { useEffect } from 'react'
 import SlideCrousel from '@/components/SlideCrousel';
 import GridCard from '@/components/GridCard';
-
 import Foods from '@/components/foods.json';
 
 const page = () => {
+  useEffect(() => {
+    // Save foods.json to localStorage if not already present
+    if (!localStorage.getItem('foods')) {
+      localStorage.setItem('foods', JSON.stringify(Foods));
+    }
+  }, []);
+
+  // Fetch foods from localStorage for rendering
+  const foods = typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem('foods') || '[]')
+    : Foods;
+
   return (
     <div>
-      <div className='justify-between flex mx-20 items-center'>
-        <p className='font-bold my-5 text-xl '>Top restaurant chains in Noida</p>
-        <div className='flex flex-row gap-10'>
-          <p className='font-bold text-2xl cursor-pointer'>←</p>
-          <p className='font-bold text-2xl cursor-pointer'>→</p>
+      <div className="top-restaurant-header">
+        <p className="top-restaurant-title">Top restaurant chains in Coimbatore</p>
+        <div className="top-restaurant-arrows">
+          <p className="arrow arrow-left">←</p>
+          <p className="arrow arrow-right">→</p>
         </div>
       </div>
-      <div className='flex flex-row overflow-x-auto whitespace-nowrap no-scrollbar mx-20'>
+      <div className="sidecrousel-wrapper">
         {
-          Foods.map((food) => (
-            <div key={food.name} className='flex-shrink-0 no-scrollbar '>
+          foods.map((food) => (
+            <div key={food.name}>
               <SlideCrousel food={food} />
             </div>
-            )
-          )
-        }     
+          ))
+        }
       </div>
-      <h1 className='my-10 mx-15 font-bold text-xl'>Restaurants with online food delivery in Noida</h1>
-      <div className='grid grid-cols-4 mx-20'>
-      {
-          Foods.map((food) => (
-            <div key={food.name} className='cols-span-1'>
+      <h1 className="restaurant-list-title">Restaurants with online food delivery in Coimbatore</h1>
+      <div className="card-wrapper">
+        {
+          foods.map((food) => (
+            <div key={food.name}>
               <GridCard food={food} />
             </div>
-            )
-          )
-        }  
+          ))
+        }
       </div>
     </div>
   )
