@@ -37,7 +37,7 @@ const AdminPage = () => {
           </button>
         </form>
         <p className="signup-text">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/Signup" className="signup-link">
             Sign up
           </Link>
