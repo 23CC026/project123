@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Image from 'next/image';
 // import './GridCard.css'; // Import the CSS file for custom styles
 
 const GridCard = ({food}) => {
@@ -13,7 +14,14 @@ const GridCard = ({food}) => {
   return (
     <div className="card-wrapper">
     <div className="gridcard-container">
-      <img src={food.imageURL} alt={food.name} className="gridcard-image" />
+      <Image
+        src={food.imageURL}
+        alt={food.name}
+        className="gridcard-image"
+        width={300}
+        height={200}
+        style={{ objectFit: 'cover' }}
+      />
       <p className="gridcard-name">{food.name}</p>
       <p className="gridcard-categories">{food.categories}</p>
       <p className="gridcard-price">₹{food.price} for two</p>

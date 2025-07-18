@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -25,7 +26,14 @@ const CartPage = () => {
         <div style={{ display: "flex", flexWrap: "wrap", gap: "24px" }}>
           {cartItems.map((item, idx) => (
             <div key={idx} className="gridcard-container" style={{ width: "340px" }}>
-              <img src={item.imageURL} alt={item.name} className="gridcard-image" />
+              <Image
+                src={item.imageURL}
+                alt={item.name}
+                className="gridcard-image"
+                width={300}
+                height={200}
+                style={{ objectFit: 'cover' }}
+              />
               <p className="gridcard-name">{item.name}</p>
               <p className="gridcard-categories">{item.categories}</p>
               <p className="gridcard-price">₹{item.price} for two</p>

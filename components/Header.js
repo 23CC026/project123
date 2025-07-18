@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link'
 
 const Header = () => {
@@ -46,7 +47,14 @@ const Header = () => {
           <div className="cart-dropdown">
             {cartItems.map((item, idx) => (
               <div key={idx} className="cart-item">
-                <img src={item.imageURL} alt={item.name} className="cart-item-image" />
+                <Image
+                  src={item.imageURL}
+                  alt={item.name}
+                  className="cart-item-image"
+                  width={50}
+                  height={50}
+                  style={{ objectFit: 'cover' }}
+                />
                 <div className="cart-item-details">
                   <span className="cart-item-name">{item.name}</span>
                   <span className="cart-item-price">₹{item.price}</span>

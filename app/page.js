@@ -4,7 +4,7 @@ import SlideCrousel from '@/components/SlideCrousel';
 import GridCard from '@/components/GridCard';
 import Foods from '@/components/foods.json';
 
-const page = () => {
+const Page = () => {
   useEffect(() => {
     // Save foods.json to localStorage if not already present
     if (!localStorage.getItem('foods')) {
